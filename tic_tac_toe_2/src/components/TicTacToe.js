@@ -9,6 +9,9 @@ function TicTacToe() {
 
   const playedOn = (position) => {
     const board = squares.slice();
+    if (board[position] !== "") {
+      return;
+    }
     board[position] = currentPlayer === Constants.PLAYER_ONE_SYMBOL ? Constants.PLAYER_ONE_SYMBOL : Constants.PLAYER_TWO_SYMBOL;
     togglePlayer();
     setSquares(board);

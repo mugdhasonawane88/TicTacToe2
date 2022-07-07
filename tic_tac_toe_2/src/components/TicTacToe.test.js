@@ -59,4 +59,20 @@ describe('TicTacToe component', () => {
     })
   });
 
+  test('Should not allow player to click same square again', () => {
+
+    const squares = screen.queryAllByTestId('square');
+
+    fireEvent.click(squares[Constants.TOP_LEFT_SQUARE]);
+    fireEvent.click(squares[Constants.TOP_LEFT_SQUARE]);
+
+    squares.forEach((square, position) => {
+      if (position === Constants.TOP_LEFT_SQUARE) {
+        expect(square.textContent).toBe(Constants.PLAYER_ONE_SYMBOL);
+      } else {
+        expect(square.textContent).toBe('');
+      }
+    })
+  });
+
 });
