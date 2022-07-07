@@ -105,4 +105,30 @@ describe('TicTacToe component', () => {
 
   });
 
+  test('Should end the game once there is winner', () => {
+
+    const squares = screen.queryAllByTestId('square');
+    const status = screen.getByTestId('status');
+
+    fireEvent.click(squares[Constants.CENTER_LEFT_SQUARE]);
+    fireEvent.click(squares[Constants.TOP_MIDDLE_SQUARE]);
+    fireEvent.click(squares[Constants.CENTER_SQUARE]);
+    fireEvent.click(squares[Constants.TOP_LEFT_SQUARE]);
+    fireEvent.click(squares[Constants.BOTTOM_LEFT_SQUARE]);
+    fireEvent.click(squares[Constants.TOP_RIGHT_SQUARE]);
+    fireEvent.click(squares[Constants.CENTER_RIGHT_SQUARE]);
+
+    squares.forEach((square, position) => {
+      if (position === Constants.CENTER_LEFT_SQUARE || position === Constants.CENTER_SQUARE || position === Constants.BOTTOM_LEFT_SQUARE) {
+        expect(square.textContent).toBe(Constants.PLAYER_ONE_SYMBOL);
+      } else if (position === Constants.TOP_MIDDLE_SQUARE || position === Constants.TOP_LEFT_SQUARE || position === Constants.TOP_RIGHT_SQUARE) {
+        expect(square.textContent).toBe(Constants.PLAYER_TWO_SYMBOL);
+      } else {
+        expect(square.textContent).toBe('');
+      }
+    })
+    expect(status.textContent).toBe(Constants.PLAYER_TWO_WON);
+
+  });
+
 });
