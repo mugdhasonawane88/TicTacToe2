@@ -1,15 +1,30 @@
 import './TicTacToe.css';
 import { Constants } from '../constants/Constants';
+import { useState } from 'react';
 
 function TicTacToe() {
+
+  const [squares, setSquares] = useState(Array(Constants.TOTAL_SQUARES).fill(''));
+
+  const playedOn = (position) => {
+    const board = squares.slice();
+    board[position] = "X";
+    setSquares(board);
+  }
 
   const renderBoard = () => {
     return (
       <div className='board'>
         {
-          [...Array(Constants.TOTAL_SQUARES)].map((square, index) => {
+          squares.map((squareValue, position) => {
             return (
-              <span key={index} role='square' className='cell' />
+              <span
+                key={position}
+                data-testid='square'
+                className='cell'
+                onClick={() => playedOn(position)}>
+                {squareValue}
+              </span>
             )
           }
           )
