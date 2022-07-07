@@ -9,6 +9,7 @@ function TicTacToe() {
   const [winner, setWinner] = useState(null);
 
   const playedOn = (position) => {
+    if (winner) return;
     const board = squares.slice();
 
     if (board[position] !== "") {
