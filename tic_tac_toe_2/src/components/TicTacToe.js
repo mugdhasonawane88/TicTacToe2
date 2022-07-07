@@ -6,15 +6,18 @@ function TicTacToe() {
 
   const [squares, setSquares] = useState(Array(Constants.TOTAL_SQUARES).fill(''));
   const [currentPlayer, setCurrentPlayer] = useState(Constants.PLAYER_ONE.NAME);
+  const [winner, setWinner] = useState(null);
 
   const playedOn = (position) => {
     const board = squares.slice();
+
     if (board[position] !== "") {
       return;
     }
     board[position] = isPlayerOneTurn() ? Constants.PLAYER_ONE.SYMBOL : Constants.PLAYER_TWO.SYMBOL;
-    togglePlayer();
     setSquares(board);
+    checkWinnerInTopRow(board);
+    togglePlayer();
   }
 
   const togglePlayer = () => {
@@ -23,6 +26,21 @@ function TicTacToe() {
 
   const isPlayerOneTurn = () => {
     return currentPlayer === Constants.PLAYER_ONE.NAME;
+  }
+
+  const checkWinnerInTopRow = (board) => {
+    if (Constants.FIRST_ROW_POSITIONS.map((position) => board[position])
+      .every((value, index, arr) => value && value === arr[Constants.FIRST_SQUARE])) {
+      setWinner(currentPlayer);
+    }
+  }
+
+  const getGameStatus = () => {
+    if (!winner) {
+      return currentPlayer + ' turn';
+    } else {
+      return winner + ' won';
+    }
   }
 
   const renderBoard = () => {
@@ -51,7 +69,7 @@ function TicTacToe() {
         {Constants.HEADER}
       </header>
       {renderBoard()}
-      <div className='status' data-testid="status">{currentPlayer + ' turn'}</div>
+      <div className='status' data-testid="status">{getGameStatus()}</div>
     </div >
   );
 }
