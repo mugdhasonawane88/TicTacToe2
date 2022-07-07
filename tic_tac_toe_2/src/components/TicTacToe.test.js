@@ -75,4 +75,19 @@ describe('TicTacToe component', () => {
     })
   });
 
+  test('Should display players name to play', () => {
+
+    const squares = screen.queryAllByTestId('square');
+    const status = screen.getByTestId('status');
+
+    expect(status.textContent).toBe(Constants.PLAYER_ONE_TURN);
+    fireEvent.click(squares[Constants.TOP_LEFT_SQUARE]);
+
+    expect(status.textContent).toBe(Constants.PLAYER_TWO_TURN);
+
+    fireEvent.click(squares[Constants.CENTER_SQUARE]);
+    expect(status.textContent).toBe(Constants.PLAYER_ONE_TURN);
+
+  });
+
 });

@@ -5,4 +5,6 @@ export const Constants = {
     CENTER_SQUARE: 4,
     PLAYER_ONE_SYMBOL: 'X',
     PLAYER_TWO_SYMBOL: 'O',
+    PLAYER_ONE_TURN: 'Player One turn',
+    PLAYER_TWO_TURN: 'Player Two turn',
 }
