@@ -15,5 +15,6 @@ export const Constants = {
     FIRST_COLUMN_POSITIONS: [0, 3, 6],
     SECOND_COLUMN_POSITIONS: [1, 4, 7],
     THIRD_COLUMN_POSITIONS: [2, 5, 8],
+    LEFT_DIAGONAL_POSITIONS: [0, 4, 8],
     FIRST_SQUARE: 0
 }
