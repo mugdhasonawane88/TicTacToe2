@@ -19,8 +19,7 @@ function TicTacToe() {
     setSquares(board);
     checkWinnerInRow(board);
     checkWinnerInColumn(board);
-    checkWinnerInLeftDiagonal(board);
-    checkWinnerInRighttDiagonal(board);
+    checkWinnerInDiagonal(board);
     togglePlayer();
   }
 
@@ -40,6 +39,10 @@ function TicTacToe() {
   const checkWinnerInColumn = (board) => {
     return checkWinnerInLeftColumn(board) || checkWinnerInMiddleColumn(board)
       || checkWinnerInRightColumn(board);
+  }
+
+  const checkWinnerInDiagonal = (board) => {
+    return checkWinnerInLeftDiagonal(board) || checkWinnerInRighttDiagonal(board);
   }
 
   const checkWinnerInTopRow = (board) => {
