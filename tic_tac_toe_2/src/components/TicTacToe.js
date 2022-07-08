@@ -20,6 +20,7 @@ function TicTacToe() {
     checkWinnerInRow(board);
     checkWinnerInLeftColumn(board);
     checkWinnerInMiddleColumn(board);
+    checkWinnerInRightColumn(board);
     togglePlayer();
   }
 
@@ -66,6 +67,13 @@ function TicTacToe() {
 
   const checkWinnerInMiddleColumn = (board) => {
     if (Constants.SECOND_COLUMN_POSITIONS.map((position) => board[position])
+      .every((value, index, arr) => value && value === arr[Constants.FIRST_SQUARE])) {
+      setWinner(currentPlayer);
+    }
+  }
+
+  const checkWinnerInRightColumn = (board) => {
+    if (Constants.THIRD_COLUMN_POSITIONS.map((position) => board[position])
       .every((value, index, arr) => value && value === arr[Constants.FIRST_SQUARE])) {
       setWinner(currentPlayer);
     }

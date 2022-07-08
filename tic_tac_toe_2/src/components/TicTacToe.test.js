@@ -193,4 +193,20 @@ describe('TicTacToe component', () => {
 
   });
 
+  test('Should announce player as winner when he places symbol across the third column', () => {
+
+    const squares = screen.queryAllByTestId('square');
+    const status = screen.getByTestId('status');
+
+    fireEvent.click(squares[Constants.CENTER_SQUARE]);
+    fireEvent.click(squares[Constants.TOP_RIGHT_SQUARE]);
+    fireEvent.click(squares[Constants.TOP_LEFT_SQUARE]);
+    fireEvent.click(squares[Constants.CENTER_RIGHT_SQUARE]);
+    fireEvent.click(squares[Constants.BOTTOM_MIDDLE_SQUARE]);
+    fireEvent.click(squares[Constants.BOTTOM_RIGHT_SQUARE]);
+
+    expect(status.textContent).toBe(Constants.PLAYER_TWO_WON);
+
+  });
+
 });
