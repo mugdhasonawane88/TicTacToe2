@@ -18,6 +18,7 @@ function TicTacToe() {
     board[position] = isPlayerOneTurn() ? Constants.PLAYER_ONE.SYMBOL : Constants.PLAYER_TWO.SYMBOL;
     setSquares(board);
     checkWinnerInTopRow(board);
+    checkWinnerInMiddleRow(board);
     togglePlayer();
   }
 
@@ -31,6 +32,13 @@ function TicTacToe() {
 
   const checkWinnerInTopRow = (board) => {
     if (Constants.FIRST_ROW_POSITIONS.map((position) => board[position])
+      .every((value, index, arr) => value && value === arr[Constants.FIRST_SQUARE])) {
+      setWinner(currentPlayer);
+    }
+  }
+
+  const checkWinnerInMiddleRow = (board) => {
+    if (Constants.SECOND_ROW_POSITIONS.map((position) => board[position])
       .every((value, index, arr) => value && value === arr[Constants.FIRST_SQUARE])) {
       setWinner(currentPlayer);
     }

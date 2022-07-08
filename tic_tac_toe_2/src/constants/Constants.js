@@ -10,5 +10,6 @@ export const Constants = {
         NAME: "Player Two"
     },
     FIRST_ROW_POSITIONS: [0, 1, 2],
+    SECOND_ROW_POSITIONS: [3, 4, 5],
     FIRST_SQUARE: 0
 }
